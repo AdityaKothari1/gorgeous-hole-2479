@@ -1,5 +1,5 @@
 import {
-  Accordion,
+    Accordion,
   AccordionButton,
   AccordionIcon,
   AccordionItem,
@@ -15,48 +15,48 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import styles from "./Makeup.module.css";
-import axios from  "axios"
+import styles from "./Skin.module.css";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import Footer from "./Footer";
 
-function getData({sortBy}){
-    return axios.get(`https://peaceful-castle-87830.herokuapp.com/makeup?_sort=price&_order=${sortBy}`)
+function getData({ sortBy }) {
+  return axios.get(
+    `https://intense-basin-23894.herokuapp.com/skincare?_sort=price&_order=${sortBy}`
+  );
 }
 
-function MakeUp() {
-  const [data,setData]=useState([])
-  const [sortBy,setSort]=useState("ASC")
-   
-  useEffect(()=>{
-      getData({sortBy}).then((res)=>{
-        console.log(res.data)
-        setData(res.data)
-      })
-  },[sortBy])
+function SkinCare() {
+  const [data, setData] = useState([]);
+  const [sortBy, setSort] = useState("ASC");
 
+  useEffect(() => {
+    getData({ sortBy }).then((res) => {
+      console.log(res.data);
+      setData(res.data);
+    });
+  }, [sortBy]);
 
   return (
     <>
-   
-    <div style={{ display: "flex" }}>
+    <div style={{display: "flex" }}>
       <div className={styles.slideshow}>
-        <p>Makeup</p>
+        <p>skincare</p>
         <Heading as="h4" size="lg">
-          Makeup
+          Skincare
         </Heading>
-        <p>Face(798)</p>
-        <p>Vegan (613)</p>
-        <p>Eye (889)</p>
-        <p>Lip (494)</p>
-        <p>Cheek (234)</p>
-        <p>Value & Gift Sets (272)</p>
-        <p>Makeup Palettes (183)</p>
-        <p>Brushes & Applicators (256)</p>
-        <p>Accessories (90)</p>
-        <p>Nail (56)</p>
+        <p>Moisturizers (679)</p>
+        <p>Cleansers (415)</p>
+        <p>Treatments (543)</p>
+        <p>Masks (189)</p>
+        <p>Eye Care (194)</p>
+        <p>Lip Balms & Treatments (141)</p>
+        <p>Sunscreen (184)</p>
+        <p>Self Tanners (66)</p>
+        <p>High Tech Tools (108)</p>
+        <p>Wellness (144)</p>
         <p className={styles.filter}>Filters</p>
-        <Accordion defaultIndex={[0]} allowMultiple>
+                <Accordion defaultIndex={[0]} allowMultiple>
                     <AccordionItem>
                     <h2>
                     <AccordionButton>
@@ -190,8 +190,8 @@ function MakeUp() {
                     </AccordionPanel>
                     </AccordionItem>
               </Accordion>
-
-      </div>
+              
+            </div>
       <div className={styles.makeupcontent}>
         <div className={styles.filterdiv}>
           <div>
@@ -264,9 +264,17 @@ function MakeUp() {
             >
               <ChevronDownIcon />
             </MenuButton>
-            <MenuList boxShadow={"box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"}>
-              <MenuItem onClick={()=>setSort("asc")}>Price Low To High</MenuItem>
-              <MenuItem onClick={()=>setSort("desc")}>Price High To Low</MenuItem>
+            <MenuList
+              boxShadow={
+                "box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"
+              }
+            >
+              <MenuItem onClick={() => setSort("asc")}>
+                Price Low To High
+              </MenuItem>
+              <MenuItem onClick={() => setSort("desc")}>
+                Price High To Low
+              </MenuItem>
               <MenuItem>Best Selling</MenuItem>
               <MenuItem>Top Rated</MenuItem>
               <MenuItem>New</MenuItem>
@@ -274,23 +282,35 @@ function MakeUp() {
           </Menu>
         </p>
         <div className={styles.product}>
-             {data&&data.map((item)=>
-                  <div className={styles.new}>
-                     <img  src={item.image} alt="" />
-                     <h5 style={{fontWeight:"bold" ,fontSize:"14px",marginTop:"20px"}}>{item.title}</h5>
-                     <p>{item.description}</p>
-                     <p style={{color:"gray",fontSize:"14px"}}>{item.color}</p>
-                     <p style={{color:"gray",fontSize:"14px"}}>{item.rating}</p>
-                     <h4 style={{fontWeight:"bold" ,fontSize:"16px"}}>${item.price}.00</h4>
-                     <button class={styles.heart}></button>
-                     <button className={styles.quick}>Quicklook</button>
-                  </div>
-             )}
+          {data &&
+            data.map((item) => (
+              <div className={styles.new}>
+                <img src={item.image} alt="" />
+                <h5
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    marginTop: "20px",
+                  }}
+                >
+                  {item.title}
+                </h5>
+                <p>{item.description}</p>
+                <p style={{ color: "gray", fontSize: "14px" }}>{item.rating}</p>
+                <h4 style={{ fontWeight: "bold", fontSize: "16px" }}>
+                  ${item.price}.00
+                </h4>
+                <button class={styles.heart}></button>
+                <button className={styles.quick}>Quicklook</button>
+              </div>
+            ))}
         </div>
       </div>
     </div>
-      <Footer/>
+   <Footer/>
     </>
+
   );
 }
-export default MakeUp;
+
+export default SkinCare; 
