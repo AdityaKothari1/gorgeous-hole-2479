@@ -25,6 +25,7 @@ function getData({sortBy}){
 }
 
 function MakeUp() {
+  let arr=   JSON.parse(localStorage.getItem("makeup"))||[]
   const [data,setData]=useState([])
   const [sortBy,setSort]=useState("ASC")
    
@@ -34,7 +35,10 @@ function MakeUp() {
         setData(res.data)
       })
   },[sortBy])
-
+ const handledata=(item)=>{
+     arr.push(item)
+    localStorage.setItem("makeup",JSON.stringify(arr))
+ }
 
   return (
     <>
@@ -283,7 +287,7 @@ function MakeUp() {
                      <p style={{color:"gray",fontSize:"14px"}}>{item.rating}</p>
                      <h4 style={{fontWeight:"bold" ,fontSize:"16px"}}>${item.price}.00</h4>
                      <button class={styles.heart}></button>
-                     <button className={styles.quick}>Quicklook</button>
+                     <button onClick={()=>handledata(item)} className={styles.quick}>Quicklook</button>
                   </div>
              )}
         </div>
