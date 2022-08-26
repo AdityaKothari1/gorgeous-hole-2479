@@ -4,15 +4,41 @@ import { Button, Divider, Heading, Img, Input, Link } from '@chakra-ui/react'
 import {AddIcon, ChevronRightIcon, InfoIcon, MinusIcon} from  "@chakra-ui/icons"
 import styles from './Cart.module.css'
 import { useState } from 'react'
-
+import PayModal from './PayModal'
+import axios from 'axios'
+import { useEffect } from 'react'
+import Footer from './Footer'
+  
+function getData(){
+  return axios.get("https://obscure-stream-21364.herokuapp.com/user")
+}
+function DeleteData({id}){
+  return axios.delete(`https://obscure-stream-21364.herokuapp.com/user/${id}`)
+}
 
   function Cart(){
     let sum=0
-    let arr=JSON.parse(localStorage.getItem("makeup"))||[]
+    let sum1=0+sum
+    const[data,setData]=useState([])
     const [total,setTotal]=useState([])
     const [count,setCount]=useState(1)
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const handleClick = () => {
+      setIsModalVisible(true);
+    };
+      const handleGetData=()=>{
+         getData().then((res)=>setData(res.data)).catch((err)=>console.log(err))
 
+      }
+    useEffect(()=>{
+      handleGetData()
+    },[])
      
+    const handleDelete=(id)=>{
+         DeleteData({id}).then((res)=>{
+          handleGetData()
+         })
+    }
     return (
       <>
         <div className={styles.cartbox}>
@@ -37,7 +63,7 @@ import { useState } from 'react'
                 Get It Shipped 
               </Heading>
                 
-             <div className={styles.shadow}>
+             <div style={{marginBottom:'80px'}} className={styles.shadow}>
                <div style={{width:"60%",marginLeft:"30px"}}>
                Enjoy free shipping with code FREESHIP.Free Returns, see details/exclusions.*
                </div>
@@ -55,18 +81,20 @@ import { useState } from 'react'
                         </div>
                    </div> 
                       {/* here put your cart data make a div*/}
-                    {arr.map((item)=>
+                    {data.map((item)=>
                          <div className={styles.cartitem}>
                             <img width="100px" src={item.image} alt="" />
-                              <div >
+                              <div key={item.id} >
                               <h4>{item.title}</h4>
                               <p>{item.description}</p>
                               <p >ITEM { Math.floor(Math.random()*12000)}</p>
                               <Button w="10px" h="20px" disabled={count===1}  onClick={()=>setCount(count-1)}><MinusIcon fontSize="10px"/></Button>
                               <Button  w="10px" h="20px" fontSize="10px">{count}</Button>
                               <Button  w="10px" h="20px" onClick={()=>setCount(count+1)}><AddIcon fontSize="10px"/></Button>
+                               <button onClick={()=>handleDelete(item.id)}  className={styles.remove}>Remove</button>
                               </div>
-                             <h5 style={{marginLeft:"280px"}}>${item.price}.00</h5> 
+                             <h5 style={{marginLeft:"280px"}}>${sum=item.price*count}.00</h5>
+                                
                          </div>
                     )}  
                     
@@ -79,7 +107,7 @@ import { useState } from 'react'
                     <div className={styles.pay}>
                       <div className={styles.checkout} > 
                       <p>Merchandise Subtotal</p>
-                          <h6>$1.00</h6>
+                          <h6>${sum}.00</h6>
                       </div>
                       <div className={styles.checkout} > 
                       <p>Shipping & Handling <InfoIcon bg="gray" color="white" border="1px solid gray" borderRadius="50%" /></p>
@@ -92,10 +120,10 @@ import { useState } from 'react'
                       <Divider w="90%" margin="auto" orientation='horizontal' />
                       <div className={styles.total} > 
                       <h6>Estimated Total</h6>
-                          <h6>$106.00</h6>
+                          <h6>${sum}.00</h6>
                       </div>
                       <p style={{fontSize:"12px",color:"gray",marginTop:"20px",marginLeft:"20px"}}>Shipping & taxes calculated during checkout</p>
-                      <Button display="block"  width="90%" h="45px" margin="auto" marginTop="20px" borderRadius="1.4rem" colorScheme='red' padding="5px" >Checkout Shipped Items</Button>
+                      <Button onClick={()=>handleClick()} display="block"  width="90%" h="45px" margin="auto" marginTop="20px" borderRadius="1.4rem" colorScheme='red' padding="5px" >Checkout Shipped Items</Button>
                       <Button className={styles.btn1} display="block" bg="transparent" color="black" colorScheme="none" justifyContent="center"  width="90%" h="45px" margin="auto" marginTop="10px" borderRadius="1.4rem" border="2px solid black" padding="px">Pay with<Img w="100px" display="block" alignItems="center" marginLeft="170px" marginTop="-20px" src='https://www.sephora.com/img/ufe/logo-paypal.svg'/></Button>
                     </div>
                     <div className={styles.promo}>
@@ -106,6 +134,10 @@ import { useState } from 'react'
                 </div>
           </div>
         </div>
+       
+        <Footer/>
+        <PayModal isOpen={isModalVisible}
+                  setIsOpen={setIsModalVisible}/>
       </>
     );
   }
