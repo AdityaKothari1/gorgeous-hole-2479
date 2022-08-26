@@ -36,7 +36,9 @@ function SkinCare() {
       setData(res.data);
     });
   }, [sortBy]);
-
+  const handledata=(item)=>{
+    axios.post("https://obscure-stream-21364.herokuapp.com/user",item)
+}
   return (
     <>
     <div style={{display: "flex" }}>
@@ -301,7 +303,7 @@ function SkinCare() {
                   ${item.price}.00
                 </h4>
                 <button class={styles.heart}></button>
-                <button className={styles.quick}>Quicklook</button>
+                <button onClick={()=>handledata(item)} className={styles.quick}>Quicklook</button>
               </div>
             ))}
         </div>

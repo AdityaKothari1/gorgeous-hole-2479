@@ -4,7 +4,8 @@ import styles from "./Footer.module.css";
 function Footer() {
   return (
     <>
-      <div className={styles.foot}>
+    <footer>
+            <div className={styles.foot}>
         <div className={styles.store}>
           <div className={styles.icon}>
             <img
@@ -189,6 +190,7 @@ function Footer() {
 
          </div>
       </div>
+    </footer>
      
     </>
   );

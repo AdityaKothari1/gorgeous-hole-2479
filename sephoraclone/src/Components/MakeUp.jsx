@@ -25,7 +25,6 @@ function getData({sortBy}){
 }
 
 function MakeUp() {
-  let arr=   JSON.parse(localStorage.getItem("makeup"))||[]
   const [data,setData]=useState([])
   const [sortBy,setSort]=useState("ASC")
    
@@ -36,8 +35,7 @@ function MakeUp() {
       })
   },[sortBy])
  const handledata=(item)=>{
-     arr.push(item)
-    localStorage.setItem("makeup",JSON.stringify(arr))
+     axios.post("https://obscure-stream-21364.herokuapp.com/user",item)
  }
 
   return (
