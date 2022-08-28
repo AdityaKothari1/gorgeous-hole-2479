@@ -19,6 +19,7 @@ import styles from "./Makeup.module.css";
 import axios from  "axios"
 import { useEffect, useState } from "react";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 function getData({sortBy}){
     return axios.get(`https://peaceful-castle-87830.herokuapp.com/makeup?_sort=price&_order=${sortBy}`)
@@ -40,7 +41,7 @@ function MakeUp() {
 
   return (
     <>
-   
+       <Navbar/>
     <div style={{ display: "flex" }}>
       <div className={styles.slideshow}>
         <p>Makeup</p>

@@ -1,17 +1,17 @@
 import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, HStack, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, PinInput, PinInputField, Spinner, Stack } from "@chakra-ui/react"
   
 
-
+import {useNavigate} from "react-router-dom"
 
  
     
  function Otp({Open,setOpen}){
-
+  const navigate = useNavigate()
 
        const handleSubmit=()=>{
          setTimeout(()=>{
-         
-alert('Your Order is Successfull');
+           alert('Your Order is Successfull');
+           navigate("/")
          },2000)
            
 
@@ -48,4 +48,4 @@ alert('Your Order is Successfull');
        </>
     )
  }
- export default Otp
+ export default Otp 
