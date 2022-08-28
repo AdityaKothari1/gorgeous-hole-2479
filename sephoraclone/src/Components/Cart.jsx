@@ -8,6 +8,7 @@ import PayModal from './PayModal'
 import axios from 'axios'
 import { useEffect } from 'react'
 import Footer from './Footer'
+import Navbar from './Navbar'
   
 function getData(){
   return axios.get("https://obscure-stream-21364.herokuapp.com/user")
@@ -40,7 +41,8 @@ function DeleteData({id}){
          })
     }
     return (
-      <>
+      <> 
+        <Navbar/>
         <div className={styles.cartbox}>
               <Heading as="h4" size="lg" marginLeft="120px" marginTop="50px">
                 My Basket

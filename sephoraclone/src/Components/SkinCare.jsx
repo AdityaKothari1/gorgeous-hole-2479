@@ -19,6 +19,7 @@ import styles from "./Skin.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 function getData({ sortBy }) {
   return axios.get(
@@ -41,6 +42,7 @@ function SkinCare() {
 }
   return (
     <>
+       <Navbar/>
     <div style={{display: "flex" }}>
       <div className={styles.slideshow}>
         <p>skincare</p>
