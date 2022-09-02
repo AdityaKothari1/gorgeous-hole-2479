@@ -37,6 +37,7 @@ function MakeUp() {
   },[sortBy])
  const handledata=(item)=>{
      axios.post("https://obscure-stream-21364.herokuapp.com/user",item)
+     alert('Item Added');
  }
 
   return (
