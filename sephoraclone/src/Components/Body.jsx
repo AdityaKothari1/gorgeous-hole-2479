@@ -8,10 +8,10 @@ import { Button, ChakraProvider } from "@chakra-ui/react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
-const url="https://intense-basin-23894.herokuapp.com/makeup";
-const url1="https://intense-basin-23894.herokuapp.com/skincare";
-const url2="https://intense-basin-23894.herokuapp.com/skincare?id=50&id=49&id=48&id=47&id=46&id=45&id=44&id=43&id=42&id=41&id=40&id=39&id=38&id=37&id=36&id=35&id=34&id=33&id=32&id=31&id=30&id=29";
-const url3="https://intense-basin-23894.herokuapp.com/makeup?id=50&id=49&id=48&id=47&id=46&id=45&id=44&id=43&id=42&id=41&id=40&id=39&id=38&id=37&id=36&id=35&id=34&id=33&id=32&id=31&id=30&id=29";
+const url="https://sephora.onrender.com/makeup";
+const url1="https://sephora.onrender.com/skincare";
+const url2="https://sephora.onrender.com/skincare?id=50&id=49&id=48&id=47&id=46&id=45&id=44&id=43&id=42&id=41&id=40&id=39&id=38&id=37&id=36&id=35&id=34&id=33&id=32&id=31&id=30&id=29";
+const url3="https://sephora.onrender.com/makeup?id=50&id=49&id=48&id=47&id=46&id=45&id=44&id=43&id=42&id=41&id=40&id=39&id=38&id=37&id=36&id=35&id=34&id=33&id=32&id=31&id=30&id=29";
 const post4=[
     {
         "id": 5,

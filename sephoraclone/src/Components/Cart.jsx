@@ -11,10 +11,10 @@ import Footer from './Footer'
 import Navbar from './Navbar'
   
 function getData(){
-  return axios.get("https://obscure-stream-21364.herokuapp.com/user")
+  return axios.get("https://sephora.onrender.com/user")
 }
 function DeleteData({id}){
-  return axios.delete(`https://obscure-stream-21364.herokuapp.com/user/${id}`)
+  return axios.delete(`https://sephora.onrender.com/user/${id}`)
 }
 
   function Cart(){

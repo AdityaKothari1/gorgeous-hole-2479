@@ -22,7 +22,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 function getData({sortBy}){
-    return axios.get(`https://peaceful-castle-87830.herokuapp.com/makeup?_sort=price&_order=${sortBy}`)
+    return axios.get(`https://sephora.onrender.com/makeup?_sort=price&_order=${sortBy}`)
 }
 
 function MakeUp() {
@@ -36,7 +36,7 @@ function MakeUp() {
       })
   },[sortBy])
  const handledata=(item)=>{
-     axios.post("https://obscure-stream-21364.herokuapp.com/user",item)
+     axios.post("https://sephora.onrender.com/user",item)
      alert('Item Added');
  }
 

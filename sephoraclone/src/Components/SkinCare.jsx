@@ -23,7 +23,7 @@ import Navbar from "./Navbar";
 
 function getData({ sortBy }) {
   return axios.get(
-    `https://intense-basin-23894.herokuapp.com/skincare?_sort=price&_order=${sortBy}`
+    `https://sephora.onrender.com/skincare?_sort=price&_order=${sortBy}`
   );
 }
 
@@ -38,7 +38,7 @@ function SkinCare() {
     });
   }, [sortBy]);
   const handledata=(item)=>{
-    axios.post("https://obscure-stream-21364.herokuapp.com/user",item)
+    axios.post("https://sephora.onrender.com/user",item)
     alert('Item Added');
 }
   return (

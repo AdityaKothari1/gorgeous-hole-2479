@@ -1,6 +1,6 @@
 import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import {Link, useNavigate} from "react-router-dom"
-import {Navigate} from "react-router-dom"
+
 import React, { useContext } from "react";
 import { ChakraProvider,
     Modal,
